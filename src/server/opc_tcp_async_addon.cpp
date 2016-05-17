@@ -92,6 +92,7 @@ namespace
     OpcUa::Server::ServicesRegistry::SharedPtr internalServer = addons.GetAddon<OpcUa::Server::ServicesRegistry>(OpcUa::Server::ServicesRegistryAddonId);
     OpcUa::Server::AsioAddon::SharedPtr asio = addons.GetAddon<OpcUa::Server::AsioAddon>(OpcUa::Server::AsioAddonId);
 
+	params.Host = Common::Uri(endpointDescriptions[0].EndpointURL).Host();
     params.Port = Common::Uri(endpointDescriptions[0].EndpointUrl).Port();
     Endpoint = CreateAsyncOpcTcp(params, internalServer->GetServer(), asio->GetIoService());
     Endpoint->Listen();
